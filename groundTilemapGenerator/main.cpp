@@ -88,12 +88,14 @@ void createEndResult() {
         }
         x = x * 64;
         y = y * 128; 
+        tResult[spriteId].display();
         result[spriteId].setTexture(tResult[spriteId].getTexture());
         result[spriteId].setPosition(x, y);
         tEndResult.draw(result[spriteId]);
     }
-    tEndResult.getTexture().copyToImage().saveToFile("output/tada.png");
+    tEndResult.display();
     endResult.setTexture(tEndResult.getTexture());
+    tEndResult.getTexture().copyToImage().saveToFile("output/tada.png");
 }
 
 int main()
