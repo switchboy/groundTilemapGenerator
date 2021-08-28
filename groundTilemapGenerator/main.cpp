@@ -100,7 +100,7 @@ void createEndResult() {
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(4096, 512), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(4096, 512), "Tilemap preview");
     loadAndSetTextures();
     renderAllPossibleTilesToTexture();
     createEndResult();
