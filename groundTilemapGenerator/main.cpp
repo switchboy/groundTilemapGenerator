@@ -40,6 +40,7 @@ void renderSingleTexture(std::bitset<8> bitcode, int textureId ) {
             tResult[textureId].draw(corners[i]);
         }
     }
+    tResult[textureId].display();
     std::stringstream filename;
     filename << "output/" << textureId << ".png";
     tResult[textureId].getTexture().copyToImage().saveToFile(filename.str());
@@ -78,17 +79,16 @@ void renderAllPossibleTilesToTexture() {
 }
 
 void createEndResult() {
-    tEndResult.create(16 * 64, 16 * 128); //The square root of 256 is 16 so we create a tileset of 16*16 tiles
+    tEndResult.create(64 * 64, 4 * 128); 
     for (int spriteId = 0; spriteId < 256; spriteId++) {
         int x = spriteId;
         int y = 0;
-        while (x >= 16) {
-            x -= 16;
+        while (x >= 64) {
+            x -= 64;
             y++;
         }
         x = x * 64;
         y = y * 128; 
-        tResult[spriteId].display();
         result[spriteId].setTexture(tResult[spriteId].getTexture());
         result[spriteId].setPosition(x, y);
         tEndResult.draw(result[spriteId]);
@@ -100,7 +100,7 @@ void createEndResult() {
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1024, 2048), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(4096, 512), "SFML works!");
     loadAndSetTextures();
     renderAllPossibleTilesToTexture();
     createEndResult();
